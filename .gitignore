@@ -10,5 +10,8 @@ desktop.ini
 *.swo
 *~
 
+# rust
+target/
+
 # agents
 .claude
