@@ -1,3 +1,3 @@
 [workspace]
-members = ["functions","guessing_game", "variables"]
+members = ["functions","guessing_game", "hello_rust", "variables"]
 resolver = "3"
