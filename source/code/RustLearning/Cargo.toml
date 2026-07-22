@@ -1,0 +1,3 @@
+[workspace]
+members = ["functions","guessing_game", "variables"]
+resolver = "3"
