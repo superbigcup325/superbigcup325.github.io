@@ -1,3 +1,3 @@
 [workspace]
-members = ["control_flow", "enums_and_match","functions","guessing_game", "hello_rust", "ownership", "slice", "structs", "variables"]
+members = ["control_flow", "enums_and_match","functions","guessing_game", "hello_rust", "modules", "ownership", "slice", "structs", "variables"]
 resolver = "3"
