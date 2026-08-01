@@ -84,6 +84,8 @@ cargo add serde --features derive
 
 >> 关于 `Cargo.toml` 与 `Cargo.lock` 的具体说明，参见本系列第一篇文章
 
+>> 关于 package、crate 与依赖的完整梳理，参见 [《Rust 入门：项目代码组织》](2026-08-01-Rust-入门：项目代码组织.md)
+
 ## 开头的三行 use
 
 ```rust
@@ -97,6 +99,8 @@ use rand::Rng;
 - `std::io` 提供输入输出功能（如 `stdin()`）
 - `std::cmp::Ordering` 是一个枚举，包含 `Less`、`Greater`、`Equal` 三个变体，供后续比较结果使用
 - `rand::Rng` 是一个 **trait**（特征），定义了随机数生成器需要实现的方法
+
+>> `use` 的完整用法（嵌套路径、别名、重导出）参见 [《Rust 入门：项目代码组织》](2026-08-01-Rust-入门：项目代码组织.md)
 
 ### Trait：行为的抽象
 
