@@ -15,3 +15,12 @@ target/
 
 # agents
 .claude
+
+# 个人任务清单（不上公开仓库）
+tasks.md
+
+# 学习资料 PDF（不上公开仓库）
+*.pdf
+
+# 草稿（个人，整理成稿后才入库）
+todos/
