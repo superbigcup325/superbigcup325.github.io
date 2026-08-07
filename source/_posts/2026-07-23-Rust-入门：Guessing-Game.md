@@ -9,7 +9,7 @@ categories:
 description: 通过一个猜数字游戏，介绍 cargo add 添加依赖、trait、范围表达式、match 表达式和变量遮蔽等 Rust 核心概念
 ---
 
-## 示例代码
+## Part 1 示例代码
 
 `guessing_game`
 
@@ -53,7 +53,7 @@ fn main() {
 
 程序会生成一个 1 到 100 之间的随机数，然后不断让用户猜，每次会提示「太大」或「太小」，猜中后退出。虽然只有三十多行，但它串联了 Rust 中几个重要的概念，下面按代码顺序逐一说明
 
-## 添加依赖：cargo add
+## Part 2 添加依赖：cargo add
 
 程序依赖一个外部 crate——`rand`，用于生成随机数。在 `Cargo.toml` 中可以看到：
 
@@ -82,11 +82,11 @@ cargo add rand@0.8.5
 cargo add serde --features derive
 ```
 
->> 关于 `Cargo.toml` 与 `Cargo.lock` 的具体说明，参见本系列第一篇文章
+> 补充：关于 `Cargo.toml` 与 `Cargo.lock` 的具体说明，参见本系列第一篇文章
 
->> 关于 package、crate 与依赖的完整梳理，参见 [《Rust 入门：项目代码组织》](2026-08-01-Rust-入门：项目代码组织.md)
+> 补充：关于 package、crate 与依赖的完整梳理，参见 [《Rust 入门：项目代码组织》](<2026-08-01-Rust-入门：项目代码组织.md>)
 
-## 开头的三行 use
+## Part 3 开头的三行 use
 
 ```rust
 use std::io;
@@ -100,9 +100,9 @@ use rand::Rng;
 - `std::cmp::Ordering` 是一个枚举，包含 `Less`、`Greater`、`Equal` 三个变体，供后续比较结果使用
 - `rand::Rng` 是一个 **trait**（特征），定义了随机数生成器需要实现的方法
 
->> `use` 的完整用法（嵌套路径、别名、重导出）参见 [《Rust 入门：项目代码组织》](2026-08-01-Rust-入门：项目代码组织.md)
+> 补充：`use` 的完整用法（嵌套路径、别名、重导出）参见 [《Rust 入门：项目代码组织》](<2026-08-01-Rust-入门：项目代码组织.md>)
 
-### Trait：行为的抽象
+### 3.1 Trait：行为的抽象
 
 trait 可以理解为其他语言中的接口（interface），它定义了一组方法签名，让不同类型可以实现相同的行为
 
@@ -110,9 +110,9 @@ trait 可以理解为其他语言中的接口（interface），它定义了一�
 
 可以这样理解：trait 约定了「能做什么」，具体类型通过 `impl ... for ...` 来实现 trait，从而提供具体的行为
 
->> trait 是 Rust 中极其重要的概念，后续还会反复遇到，包括 `Clone`、`Copy`、`Drop` 等标准库中的核心 trait
+> 补充：trait 是 Rust 中极其重要的概念，后续还会反复遇到，包括 `Clone`、`Copy`、`Drop` 等标准库中的核心 trait
 
-## 范围表达式
+## Part 4 范围表达式
 
 ```rust
 rand::thread_rng().gen_range(1..101)
@@ -122,10 +122,10 @@ rand::thread_rng().gen_range(1..101)
 
 Rust 提供两种范围写法：
 
-| 写法 | 含义 | 示例 |
-| --- | --- | --- |
-| `start..end` | 左闭右开，不含 `end` | `1..5` → 1, 2, 3, 4 |
-| `start..=end` | 全闭区间，含 `end` | `1..=5` → 1, 2, 3, 4, 5 |
+| 写法          | 含义                 | 示例                    |
+| ------------- | -------------------- | ----------------------- |
+| `start..end`  | 左闭右开，不含 `end` | `1..5` → 1, 2, 3, 4     |
+| `start..=end` | 全闭区间，含 `end`   | `1..=5` → 1, 2, 3, 4, 5 |
 
 回到原本的代码：`1..101` 也可以写成 `1..=100`，效果一样
 
@@ -137,7 +137,7 @@ for i in 0..3 {
 }
 ```
 
-## 变量遮蔽（Shadowing）
+## Part 5 变量遮蔽（Shadowing）
 
 ```rust
 let mut guess = String::new();
@@ -159,13 +159,13 @@ let guess: u32 = match guess.trim().parse() {
 
 如果不用 shadowing，就需要为转换后的值另起一个名字，比如 `let guess_num: u32 = ...`。shadowing 让我们能复用同一个名字，逻辑上更清晰
 
->> shadowing 与 `mut` 不同：`mut` 允许修改同类型变量的值但不能改变类型；shadowing 则创建一个全新的变量，可以改变类型
+> 补充：shadowing 与 `mut` 不同：`mut` 允许修改同类型变量的值但不能改变类型；shadowing 则创建一个全新的变量，可以改变类型
 
-## match 表达式
+## Part 6 match 表达式
 
 match 是 Rust 中用于**模式匹配**的控制流结构，上面的代码中出现了两次
 
-### 搭配 Result 处理解析结果
+### 6.1 搭配 Result 处理解析结果
 
 ```rust
 match guess.trim().parse() {
@@ -182,9 +182,9 @@ match guess.trim().parse() {
 - `Ok(value)` —— 解析成功，取出里面的数字
 - `Err(error)` —— 解析失败，打印提示并用 `continue` 重新开始循环
 
->> `_` 是通配符模式，匹配任何值但忽略其内容。这里我们不关心具体的错误类型，所以用 `_` 忽略
+> 补充：`_` 是通配符模式，匹配任何值但忽略其内容。这里我们不关心具体的错误类型，所以用 `_` 忽略
 
-### 搭配 Ordering 处理比较结果
+### 6.2 搭配 Ordering 处理比较结果
 
 ```rust
 match guess.cmp(&secret_number) {
@@ -207,10 +207,10 @@ match 的一个关键特性是**穷尽性**（exhaustiveness）：编译器会�
 
 ## 小结
 
-| 概念 | 一句话 |
-| --- | --- |
-| `cargo add` | 命令行添加依赖，自动写入 `Cargo.toml` 并更新 `Cargo.lock` |
-| trait | 定义方法签名的抽象接口，类型通过实现 trait 来提供具体行为 |
-| 范围表达式 | `start..end` 表示半开区间，`start..=end` 表示闭合区间 |
-| shadowing | 用 `let` 重新声明同名变量，可改变类型和可变性，旧变量被遮蔽 |
-| match | 穷尽匹配的模式控制流，必须覆盖所有可能的分支 |
+| 概念        | 一句话                                                      |
+| ----------- | ----------------------------------------------------------- |
+| `cargo add` | 命令行添加依赖，自动写入 `Cargo.toml` 并更新 `Cargo.lock`   |
+| trait       | 定义方法签名的抽象接口，类型通过实现 trait 来提供具体行为   |
+| 范围表达式  | `start..end` 表示半开区间，`start..=end` 表示闭合区间       |
+| shadowing   | 用 `let` 重新声明同名变量，可改变类型和可变性，旧变量被遮蔽 |
+| match       | 穷尽匹配的模式控制流，必须覆盖所有可能的分支                |

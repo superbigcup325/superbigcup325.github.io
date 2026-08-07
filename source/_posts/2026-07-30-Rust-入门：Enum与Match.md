@@ -11,7 +11,7 @@ description: 介绍 Rust 中的枚举（enum）、模式匹配（match）以及 
 
 `enums_and_match` 示例覆盖了枚举与模式匹配的主要用法，下面按概念逐一说明
 
-## Enum 语法
+## Part 1 Enum 语法
 
 枚举使用 `enum` 关键字声明，变体名采用 **PascalCase** 命名：
 
@@ -30,7 +30,7 @@ route(six);
 
 > C++ 中的 `enum class` 类似，但 Rust 的枚举变体是独立的命名空间，通过 `IpAddrKind::V4` 访问
 
-## Enum 携带数据
+## Part 2 Enum 携带数据
 
 同时，枚举变体可以携带不同类型的数据，比 struct 更灵活且方便：
 
@@ -73,7 +73,7 @@ let home = IpAddr {
 };
 ```
 
-## Enum方法
+## Part 3 Enum方法
 
 Enum可以像 struct 一样用 `impl` 定义方法：
 
@@ -92,7 +92,7 @@ impl Message {
 }
 ```
 
-## Match 基本用法
+## Part 4 Match 基本用法
 
 `match` 表达式将一个值与模式逐一比较。值得注意的是，表达式**必须穷尽所有可能**：
 
@@ -116,7 +116,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 > `match` 的每个分支用 `=>` 分隔，表达式用 `{}` 包裹（单行可省略）
 
-### 穷尽性
+### 4.1 穷尽性
 
 match 必须覆盖所有可能的变体，否则编译报错：
 
@@ -128,9 +128,9 @@ match coin {
 }
 ```
 
-## 更多匹配写法
+## Part 5 更多匹配写法
 
-### 解构嵌套数据
+### 5.1 解构嵌套数据
 
 match 可以解构嵌套的枚举数据：
 
@@ -160,7 +160,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 `Quarter(state)` 将内部的 `UsState` 绑定到变量 `state`，可在分支体中使用
 
-### 匹配字面量
+### 5.2 匹配字面量
 
 match 可以直接匹配具体的值。当我们只需要处理个别情况时，可以这么写：
 
@@ -173,7 +173,7 @@ match dice_roll {
 }
 ```
 
-### 多行分支
+### 5.3 多行分支
 
 分支体是块表达式时，和函数返回内容的方式一样：
 
@@ -188,7 +188,7 @@ let result = match coin {
 };
 ```
 
-## 捕获
+## Part 6 捕获
 
 match 的每个分支都可以捕获匹配的值，用变量名替代 `_`：
 
@@ -203,7 +203,7 @@ match dice_roll {
 
 用 `_` 则忽略捕获的值：`_ => ()`
 
-## RWO 与借用
+## Part 7 RWO 与借用
 
 match 同样遵循 RWO 权限系统，可以按借用方式匹配：
 
@@ -237,7 +237,7 @@ match message {
 
 > 与函数传参类似：`match &message` 是借用，`match message` 是移动
 
-## Option 与 Match
+## Part 8 Option 与 Match
 
 `Option<T>` 是 Rust 的可选值类型，用于表示"可能有值，也可能没有"，即数据可能为 `None` 或 `T`：
 
@@ -273,7 +273,7 @@ let six = plush_one(five);
 let none = plush_one(None);
 ```
 
-## If Let 语法
+## Part 9 If Let 语法
 
 当 match 只需要处理一种情况时，我们可以使用 `if let` ：
 
@@ -298,14 +298,14 @@ match config_max {
 
 ## 小结
 
-| 概念 | 一句话 |
-| --- | --- |
-| `enum` | 枚举类型，变体可携带不同类型的数据 |
-| 变体 | 枚举的可能状态，通过 `Type::Variant` 访问 |
-| `impl` | 枚举可以定义方法，与 struct 一致 |
-| `match` | 模式匹配，必须穷尽所有可能 |
-| 解构绑定 | 用 `Variant(data)` 捕获枚举内部数据 |
-| `_` 通配符 | 匹配剩余所有情况 |
-| `Option<T>` | `Some(T)` 或 `None`，替代 null |
-| `if let` | 只关心一个模式时的简洁写法 |
-| `&` 借用 | `match &value` 不获取所有权 |
+| 概念        | 一句话                                    |
+| ----------- | ----------------------------------------- |
+| `enum`      | 枚举类型，变体可携带不同类型的数据        |
+| 变体        | 枚举的可能状态，通过 `Type::Variant` 访问 |
+| `impl`      | 枚举可以定义方法，与 struct 一致          |
+| `match`     | 模式匹配，必须穷尽所有可能                |
+| 解构绑定    | 用 `Variant(data)` 捕获枚举内部数据       |
+| `_` 通配符  | 匹配剩余所有情况                          |
+| `Option<T>` | `Some(T)` 或 `None`，替代 null            |
+| `if let`    | 只关心一个模式时的简洁写法                |
+| `&` 借用    | `match &value` 不获取所有权               |
