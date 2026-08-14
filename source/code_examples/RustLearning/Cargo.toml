@@ -1,3 +1,0 @@
-[workspace]
-members = ["collections", "control_flow", "enums_and_match","error_handling", "functions", "generics","guessing_game", "hello_rust", "modules", "ownership", "slice", "structs", "variables"]
-resolver = "3"
