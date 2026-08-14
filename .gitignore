@@ -10,21 +10,29 @@ desktop.ini
 *.swo
 *~
 
+# agent
+AGENTS.md
+.opencode/
+.claude/
+
+# .obsidian
+.obsidian/
+
 # rust
 target/
 
 # agents
 .claude
 
-# 个人任务清单（不上公开仓库）
+# 个人
 tasks.md
+learning/
+todos/
 
 # 学习资料 PDF（不上公开仓库）
 *.pdf
 
-# 草稿（个人，整理成稿后才入库）
-todos/
-
 # 依赖与构建产物
 node_modules/
 public/
+.cph-ng/
