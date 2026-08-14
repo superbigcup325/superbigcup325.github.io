@@ -1,0 +1,14 @@
+{
+  "name": "pjax-markdown-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "原生 JavaScript + Pjax + Markdown 的个人博客",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "js-yaml": "^5.2.3",
+    "marked": "^12.0.2",
+    "prismjs": "^1.30.0"
+  }
+}

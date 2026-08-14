@@ -1,0 +1,48 @@
+<section class="home">
+  <section class="hero">
+    <div class="hero__decor-line" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <div class="hero__content">
+        <p class="hero__eyebrow"></p>
+        <h1 class="hero__title"></h1>
+        <p class="hero__text"></p>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <canvas class="hero__canvas" id="hero-canvas"></canvas>
+        <div class="hero__ring"></div>
+        <div class="hero__glass hero__glass--a"></div>
+        <div class="hero__glass hero__glass--b"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section home-section--recent">
+    <div class="home-section__head">
+      <h2 class="home-section__title">最新文章</h2>
+      <span class="home-section__line" aria-hidden="true"></span>
+    </div>
+    <ul class="post-list">
+{{{RECENT_POSTS}}}
+    </ul>
+  </section>
+
+  <section class="home-section home-section--series">
+    <div class="home-section__head">
+      <h2 class="home-section__title">系列入口</h2>
+      <span class="home-section__line" aria-hidden="true"></span>
+    </div>
+    <div class="series-cards">
+{{{SERIES_CARDS}}}
+    </div>
+  </section>
+
+  <section class="home-section home-section--standalone">
+    <div class="home-section__head">
+      <h2 class="home-section__title">独立文章</h2>
+      <span class="home-section__line" aria-hidden="true"></span>
+    </div>
+    <ul class="post-list">
+{{{STANDALONE_POSTS}}}
+    </ul>
+  </section>
+</section>

@@ -24,3 +24,7 @@ tasks.md
 
 # 草稿（个人，整理成稿后才入库）
 todos/
+
+# 依赖与构建产物
+node_modules/
+public/

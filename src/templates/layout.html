@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PAGE_TITLE}} · {{SITE_NAME}}</title>
+  <meta name="description" content="{{SITE_NAME}}">
+  <link rel="stylesheet" href="{{REL_ROOT}}assets/css/style.css">
+  <link rel="stylesheet" href="{{REL_ROOT}}assets/vendor/prism/prism.css">
+</head>
+<body class="page page--{{PAGE_TYPE}}">
+  <input type="checkbox" id="nav-toggle" class="drawer-toggle" aria-hidden="true">
+  <div class="page-background" aria-hidden="true" style="{{{BACKGROUND_STYLE}}}"></div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+  <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="回到顶部" hidden>
+    <svg viewBox="0 0 48 48" class="back-to-top__ring" aria-hidden="true">
+      <circle class="back-to-top__track" cx="24" cy="24" r="20"></circle>
+      <circle class="back-to-top__value" id="back-to-top-ring" cx="24" cy="24" r="20"></circle>
+    </svg>
+    <span class="back-to-top__arrow">↑</span>
+  </button>
+  <a class="skip-link" href="#pjax-container">跳到正文</a>
+
+  <header class="header">
+    <label for="nav-toggle" class="header__menu-btn" aria-label="打开导航">☰</label>
+    <a class="header__logo" href="{{REL_ROOT}}">
+      <span class="header__logo-dot" aria-hidden="true"></span>
+      <span class="header__logo-text">{{SITE_NAME}}</span>
+    </a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换深色模式" hidden>🌙</button>
+  </header>
+
+  <label for="nav-toggle" class="drawer-overlay" aria-hidden="true"></label>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__head">
+        <div class="sidebar__brand">
+          {{{AVATAR_HTML}}}
+          <a class="sidebar__logo" href="{{REL_ROOT}}">{{SITE_NAME}}</a>
+        </div>
+        <label for="nav-toggle" class="sidebar__close" aria-label="关闭导航">×</label>
+      </div>
+      <nav class="sidebar__nav" id="sidebar-nav" aria-label="站点导航">
+{{{SIDEBAR_HTML}}}
+      </nav>
+    </aside>
+
+    <main class="main" id="pjax-container">
+{{{MAIN_CONTENT}}}
+    </main>
+
+    <aside class="toc {{TOC_CLASS}}" id="toc">
+      <button class="toc__toggle" type="button" aria-expanded="false">目录</button>
+      <nav class="toc__nav" aria-label="文章目录">
+{{{TOC_HTML}}}
+      </nav>
+    </aside>
+  </div>
+
+  <script id="posts-data" type="application/json">{{{POSTS_JSON}}}</script>
+  <script src="{{REL_ROOT}}assets/vendor/prism/prism-bundle.js"></script>
+  <script src="{{REL_ROOT}}assets/js/pjax.js"></script>
+</body>
+</html>
